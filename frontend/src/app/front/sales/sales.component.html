@@ -1,0 +1,274 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">Sales</h1>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<form class="form" [formGroup]="medicineData" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-sm-6">
+            <label for="customerName">Enter Customer Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="customerName"
+              formControlName="customerName"
+              name="customerName"
+              placeholder="Enter Customer Name"
+            />
+            <div
+              *ngIf="f.customerName.touched && f.customerName.invalid"
+              class="text-danger"
+              role="alert"
+            >
+              <div
+                *ngIf="f.customerName.errors"
+                class="text-danger"
+                role="alert"
+              >
+                <div *ngIf="f.customerName.errors.required">
+                  Customer name is required.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <label for="doctorName">Enter shop Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="doctorName"
+              formControlName="doctorName"
+              name="doctorName"
+              placeholder="Enter shop Name"
+            />
+            <div
+              *ngIf="f.doctorName.touched && f.doctorName.invalid"
+              class="text-danger"
+              role="alert"
+            >
+              <div *ngIf="f.doctorName.errors" class="text-danger" role="alert">
+                <div *ngIf="f.doctorName.errors.required">
+                  shop name is required.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <label for="transportName">Enter Transport Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="transportName"
+              formControlName="transportName"
+              name="transportName"
+              placeholder="Enter Transport Name"
+            />
+            <div
+              *ngIf="f.transportName.touched && f.transportName.invalid"
+              class="text-danger"
+              role="alert"
+            >
+              <div
+                *ngIf="f.transportName.errors"
+                class="text-danger"
+                role="alert"
+              >
+                <div *ngIf="f.transportName.errors.required">
+                  Transport name is required.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <label for="transportDetails">Enter Transport Details</label>
+            <input
+              type="text"
+              class="form-control"
+              id="transportDetails"
+              formControlName="transportDetails"
+              name="transportDetails"
+              placeholder="Enter transport Details"
+            />
+            <div
+              *ngIf="f.transportDetails.touched && f.transportDetails.invalid"
+              class="text-danger"
+              role="alert"
+            >
+              <div
+                *ngIf="f.transportDetails.errors"
+                class="text-danger"
+                role="alert"
+              >
+                <div *ngIf="f.transportDetails.errors.required">
+                  Transport Details is required
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <label for="isPaid">Amount paid/unpaid</label>
+            <ng-multiselect-dropdown
+              [placeholder]="'Select Payment'"
+              [settings]="dropdownPaidSetting"
+              [data]="isPaidList"
+              (onSelect)="isPaidListSelect($event)"
+              id="isPaid"
+              formControlName="isPaid"
+              name="isPaid"
+            >
+            </ng-multiselect-dropdown>
+            <div
+              *ngIf="f.isPaid.touched && f.isPaid.invalid"
+              class="text-danger"
+              role="alert"
+            >
+              <div *ngIf="f.isPaid.errors" class="text-danger" role="alert">
+                <div *ngIf="f.isPaid.errors.required">Payment is required.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <label for="AgentName">Select Carpet</label>
+            <ng-multiselect-dropdown
+              [placeholder]="'Select Carpet'"
+              [settings]="dropdownSettings"
+              [data]="dropdownList"
+              (onSelect)="onItemSelect($event)"
+              id="medicineName"
+              formControlName="medicineName"
+              name="medicineName"
+            >
+            </ng-multiselect-dropdown>
+            <div
+              *ngIf="f.medicineName.touched && f.medicineName.invalid"
+              class="text-danger"
+              role="alert"
+            >
+              <div
+                *ngIf="f.medicineName.errors"
+                class="text-danger"
+                role="alert"
+              >
+                <div *ngIf="f.medicineName.errors.required">
+                  Carpet name is required.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 form-group">
+            <label for="quantity">Enter Tablet Quantity </label>
+            <input
+              type="text"
+              class="form-control"
+              id="quantity"
+              formControlName="quantity"
+              name="quantity"
+              #quantity
+              placeholder="Enter carpet Quantity"
+            />
+            <div
+              *ngIf="f.quantity.touched && f.quantity.invalid"
+              class="text-danger"
+              role="alert"
+            >
+              <div *ngIf="f.quantity.errors" class="text-danger" role="alert">
+                <div *ngIf="f.quantity.errors.required">
+                  Quatity is required.
+                </div>
+                <div *ngIf="f.quantity.errors.pattern">
+                  Please Enter valid Quantity
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mt-2 pt-4">
+            <button
+              type="button"
+              class="btn btn-primary"
+              [disabled]="f.quantity.invalid || f.medicineName.invalid"
+              (click)="onClick(quantity.value)"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Cart -->
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="col-lg-12 col-sm-12 mb-2">
+          <span class="title font-weight-bold">SALES CART</span>
+        </div>
+        <div class="col-lg-12 col-sm-12 hero-feature">
+          <div class="table-responsive">
+            <table class="table table-bordered tbl-cart">
+              <thead>
+                <tr>
+                  <td>Remove</td>
+                  <td>Product Name</td>
+                  <td class="td-qty">Quantity</td>
+                  <td>Price(MRP) for 1 tablet</td>
+                  <td>Discount</td>
+                  <td>Total price</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of cartItems">
+                  <td class="text-center">
+                    <button
+                      (click)="deleteMedicine(item._id)"
+                      class="remove_cart"
+                      rel="1"
+                    >
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </td>
+                  <td>{{ item.medicineName }}</td>
+                  <td>{{ item.quantity }}</td>
+                  <td>₹ {{ item.mrp }}</td>
+                  <td class="price">₹ {{ item.priceDiscount }}</td>
+                  <td>₹ {{ item.price }}</td>
+                </tr>
+
+                <tr>
+                  <td colspan="5 " style="text-align: right">Total</td>
+                  <td class="total" colspan="1 ">
+                    <b>₹ {{ total | number: "1.2-2" }}</b>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="btn-group btns-cart text-right pb-4 float-right">
+            <button
+              type="button"
+              (click)="onSubmit()"
+              ng-click="alert('Hello World!')"
+              [disabled]="
+                f.doctorName.invalid || f.customerName.invalid || buttondisable
+              "
+              class="btn btn-success"
+            >
+              Sale <i class="fa fa-arrow-circle-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- End Cart -->
+    </div>
+  </div>
+</form>

@@ -1,0 +1,195 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">{{ medicineTitle }}</h1>
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a routerLink="/sales">Home</a></li>
+          <li class="breadcrumb-item active">{{ medicineTitle }}</li>
+        </ol>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<div class="container-fluid">
+  <form [formGroup]="requirementValue" (ngSubmit)="onRequirementSubmit()">
+    <div class="row">
+      <div class="col-sm-6 form-group">
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          required
+          formControlName="name"
+          name="name"
+          aria-describedby="name"
+          placeholder="Enter Carpet Name"
+        />
+        <div
+          *ngIf="f3.name.touched && f3.name.invalid"
+          class="text-danger"
+          role="alert"
+        >
+          <div *ngIf="f3.name.errors">
+            <div *ngIf="f3.name.errors.required">Name is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 form-group">
+        <input
+          type="text"
+          class="form-control"
+          id="quantity"
+          required
+          formControlName="quantity"
+          name="quantity"
+          aria-describedby="quantity"
+          placeholder="Enter required Quantity"
+        />
+        <div
+          *ngIf="f3.quantity.touched && f3.quantity.invalid"
+          class="text-danger"
+          role="alert"
+        >
+          <div *ngIf="f3.quantity.errors">
+            <div *ngIf="f3.quantity.errors.required">Quantity is required</div>
+            <div *ngIf="f3.quantity.errors.pattern">
+              Quantity must be a Number
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-sm-12">
+      <div class="row">
+        <div class="col-sm-1">
+          <button
+            type="submit"
+            [disabled]="!requirementValue.valid"
+            class="btn btn-primary"
+          >
+            Submit
+          </button>
+        </div>
+        <div class="col-sm-2">
+          <button
+            type="button"
+            (click)="generateRequirement(requirementModel)"
+            class="btn btn-success"
+          >
+            Get Requirement
+          </button>
+        </div>
+        <div class="col-sm-2">
+          <button
+            type="button"
+            (click)="deleteRequirement()"
+            class="btn btn-danger"
+          >
+            Delete Requirement
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<ng-template #requirementModel let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Required Carpets</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="body-wrap" id="requirement-print">
+      <tbody>
+        <tr>
+          <td class="container" width="600">
+            <div class="content">
+              <table class="main" width="100%" cellpadding="0" cellspacing="0">
+                <tbody>
+                  <tr>
+                    <td class="content-wrap aligncenter">
+                      <table width="100%" cellpadding="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td class="content-block">
+                              <table class="invoice">
+                                <tbody>
+                                  <tr>
+                                    <td>
+                                      <table class="table">
+                                        <thead class="thead-light text-center">
+                                          <tr>
+                                            <th>Carpet</th>
+                                            <th>Quantity</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr
+                                            class="text-center"
+                                            *ngFor="let invoice of requirement"
+                                          >
+                                            <td>{{ invoice.name }}</td>
+                                            <td>{{ invoice.quantity }}</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="content-block">Carpet Inc.</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="footer">
+                <table width="100% ">
+                  <tbody>
+                    <tr>
+                      <td class="aligncenter content-block">
+                        Questions? Email
+                        <a href="mailto: ">support@company.inc</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button "
+      class="btn btn-outline-dark"
+      printSectionId="requirement-print"
+      [useExistingCss]="true"
+      ngxPrint
+    >
+      Print
+    </button>
+  </div>
+</ng-template>

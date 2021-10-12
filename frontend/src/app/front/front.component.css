@@ -1,0 +1,7 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import "~@ng-select/ng-select/themes/material.theme.css";
+@import "~@ng-select/ng-select/themes/ant.design.theme.css";
+.content-wrapper {
+    margin-left: 0px !important;
+    min-height: 495px !important;
+}

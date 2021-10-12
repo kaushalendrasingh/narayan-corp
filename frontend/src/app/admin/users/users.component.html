@@ -1,0 +1,47 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Agents Listing</h1>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a routerLink="/admin/dashboard">Home</a></li>
+                        <li class="breadcrumb-item active">Agents Listing</li>
+                    </ol>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <div class="container mb-5">
+        <table id="agentTable" class="table">
+            <thead class="thead-dark text-center">
+                <tr>
+                    <th>Agent Name</th>
+                    <th>Agent User Name</th>
+                    <th>Agent Email</th>
+                    <th>Agent Role</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-center" *ngFor="let agent of agents.data">
+                    <td>{{agent.name}}</td>
+                    <td>{{agent.username}}</td>
+                    <td>{{agent.email}}</td>
+                    <td>{{agent.role}}</td>
+                    <td><button type="button" class="btn btn-warning btn-sm" (click)="editAgent(agent._id)">Edit</button></td>
+                    <td><button type="button" class="btn btn-danger btn-sm" (click)="deleteAgent(agent._id)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

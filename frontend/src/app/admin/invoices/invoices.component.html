@@ -1,0 +1,202 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">Bills Listing</h1>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">
+              <a routerLink="/admin/dashboard">Home</a>
+            </li>
+            <li class="breadcrumb-item active">Bills Listing</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <div class="container mb-5">
+    <table id="invoiceTable" class="table">
+      <thead class="thead-dark text-center">
+        <tr>
+          <th>ID</th>
+          <th>Customer name</th>
+          <th>Price</th>
+          <th>Transport Name</th>
+          <th>Transport Details</th>
+          <th>Date</th>
+          <th>print</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center" *ngFor="let invoice of invoices">
+          <td>{{ invoice._id }}</td>
+          <td>{{ invoice.customerName }}</td>
+          <td>{{ invoice.totalPrice }}</td>
+          <td>{{ invoice.transportName }}</td>
+          <td>{{ invoice.transportDetails }}</td>
+          <td>{{ invoice.date | date: "dd-MM-YYYY" }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-primary btn-sm"
+              (click)="showPrintInvoice(invoice._id, mymodal)"
+            >
+              Print
+            </button>
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-danger btn-sm"
+              (click)="deleteInvoice(invoice._id)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Bills</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="body-wrap" id="table-print">
+      <tbody>
+        <tr>
+          <td class="container" width="600">
+            <div class="content">
+              <table class="main" width="100%" cellpadding="0" cellspacing="0">
+                <tbody>
+                  <tr>
+                    <td class="content-wrap aligncenter">
+                      <table width="100%" cellpadding="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td class="content-block">
+                              <h2>Thanks for purchaging</h2>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="content-block">
+                              <table class="invoice">
+                                <tbody>
+                                  <tr>
+                                    <td>
+                                      Bills #{{ printInvoiceData._id
+                                      }}<br />Customer Name:-
+                                      {{ printInvoiceData.customerName
+                                      }}<br />Shop Name:-
+                                      {{ printInvoiceData.doctorName
+                                      }}<br />Date:-
+                                      {{
+                                        printInvoiceData.date
+                                          | date: "dd-MM-YYYY"
+                                      }}
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>
+                                      <table class="table">
+                                        <thead class="thead-light text-left">
+                                          <tr>
+                                            <th>Item</th>
+                                            <th>Quantity</th>
+                                            <th>MRP</th>
+                                            <th>Discount</th>
+                                            <th>Price</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr
+                                            class="text-center"
+                                            *ngFor="
+                                              let invoice of printInvoiceData.medicines
+                                            "
+                                          >
+                                            <td>{{ invoice.medicineName }}</td>
+                                            <td>{{ invoice.quantity }}</td>
+                                            <td>{{ invoice.mrp }}</td>
+                                            <td>{{ invoice.priceDiscount }}</td>
+                                            <td>{{ invoice.price }}</td>
+                                          </tr>
+                                          <tr class="total">
+                                            <td
+                                              colspan="4"
+                                              style="text-align: right"
+                                            >
+                                              <b>Total</b>
+                                            </td>
+                                            <td class="text-center">
+                                              ₹
+                                              {{ printInvoiceData.totalPrice }}
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="content-block">Narayan Enterprise</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="footer">
+                <table width="100% ">
+                  <tbody>
+                    <tr>
+                      <td class="aligncenter content-block">
+                        Questions? Email
+                        <a href="mailto: ">narayan@gmail.com</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button "
+      class="btn btn-outline-dark"
+      printSectionId="table-print"
+      [useExistingCss]="true"
+      ngxPrint
+    >
+      Print
+    </button>
+  </div>
+</ng-template>

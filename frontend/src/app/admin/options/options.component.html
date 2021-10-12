@@ -1,0 +1,471 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper" style="height: 100%">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">Manage Options</h1>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">
+              <a routerLink="/admin/dashboard">Home</a>
+            </li>
+            <li class="breadcrumb-item active">Manage Options</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <div class="container-fluid">
+    <div id="accordion">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button
+              class="btn btn-link"
+              data-toggle="collapse"
+              data-target="#collapseOne"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+            >
+              Change Password
+            </button>
+          </h5>
+        </div>
+
+        <div
+          id="collapseOne"
+          class="collapse show"
+          aria-labelledby="headingOne"
+          data-parent="#accordion"
+        >
+          <div class="card-body">
+            <div class="container-fluid">
+              <form [formGroup]="Userdata" (ngSubmit)="onSubmit()">
+                <div class="row">
+                  <div class="col-sm-6 form-group">
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      required
+                      formControlName="password"
+                      name="password"
+                      aria-describedby="password"
+                      placeholder="Enter Password like Example@123"
+                    />
+                    <div
+                      *ngIf="f.password.touched && f.password.invalid"
+                      class="text-danger"
+                      role="alert"
+                    >
+                      <div *ngIf="f.password.errors">
+                        <div *ngIf="f.password.errors.pattern">
+                          Password should be Minimum 8 and maximum 10
+                          characters, at least one uppercase letter, one
+                          lowercase letter, one number and one special character
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-sm-2">
+                  <button
+                    type="submit"
+                    [disabled]="!Userdata.valid"
+                    class="btn btn-primary"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <button
+              class="btn btn-link collapsed"
+              data-toggle="collapse"
+              data-target="#collapseTwo"
+              aria-expanded="false"
+              aria-controls="collapseTwo"
+            >
+              Generate Date wise Report
+            </button>
+          </h5>
+        </div>
+        <div
+          id="collapseTwo"
+          class="collapse"
+          aria-labelledby="headingTwo"
+          data-parent="#accordion"
+        >
+          <div class="card-body">
+            <form [formGroup]="reportData" (ngSubmit)="onReportSubmit(mymodal)">
+              <div class="row">
+                <div class="col-sm-6 form-group">
+                  <input
+                    type="date"
+                    onkeydown="return false"
+                    class="form-control"
+                    id="reportDate"
+                    required
+                    formControlName="reportDate"
+                    name="reportDate"
+                    aria-describedby="reportDate"
+                    placeholder="Select report Date"
+                  />
+                  <div
+                    *ngIf="f1.reportDate.touched && f1.reportDate.invalid"
+                    class="text-danger"
+                    role="alert"
+                  >
+                    <div *ngIf="f1.reportDate.errors">
+                      <div *ngIf="f1.reportDate.errors.pattern">
+                        report Date Is required
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-sm-2">
+                <button
+                  type="submit"
+                  [disabled]="!reportData.valid"
+                  class="btn btn-primary"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="collapseThree">
+          <h5 class="mb-0">
+            <button
+              class="btn btn-link collapsed"
+              data-toggle="collapse"
+              data-target="#collapseThree"
+              aria-expanded="false"
+              aria-controls="collapseThree"
+            >
+              Manage your Carpet Requirements
+            </button>
+          </h5>
+        </div>
+        <div
+          id="collapseThree"
+          class="collapse"
+          aria-labelledby="collapseThree"
+          data-parent="#accordion"
+        >
+          <div class="card-body">
+            <form
+              [formGroup]="requirementValue"
+              (ngSubmit)="onRequirementSubmit()"
+            >
+              <div class="row">
+                <div class="col-sm-6 form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    required
+                    formControlName="name"
+                    name="name"
+                    aria-describedby="name"
+                    placeholder="Enter carpet name"
+                  />
+                  <div
+                    *ngIf="f3.name.touched && f3.name.invalid"
+                    class="text-danger"
+                    role="alert"
+                  >
+                    <div *ngIf="f3.name.errors">
+                      <div *ngIf="f3.name.errors.required">
+                        Name is required
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="quantity"
+                    required
+                    formControlName="quantity"
+                    name="quantity"
+                    aria-describedby="quantity"
+                    placeholder="Enter required Quantity"
+                  />
+                  <div
+                    *ngIf="f3.quantity.touched && f3.quantity.invalid"
+                    class="text-danger"
+                    role="alert"
+                  >
+                    <div *ngIf="f3.quantity.errors">
+                      <div *ngIf="f3.quantity.errors.required">
+                        Quantity is required
+                      </div>
+                      <div *ngIf="f3.quantity.errors.pattern">
+                        Quantity must be a Number
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-sm-12">
+                <div class="row">
+                  <div class="col-sm-1">
+                    <button
+                      type="submit"
+                      [disabled]="!requirementValue.valid"
+                      class="btn btn-primary"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                  <div class="col-sm-2">
+                    <button
+                      type="button"
+                      (click)="generateRequirement(requirementModel)"
+                      class="btn btn-success"
+                    >
+                      Get Requirement
+                    </button>
+                  </div>
+                  <div class="col-sm-2">
+                    <button
+                      type="button"
+                      (click)="deleteRequirement()"
+                      class="btn btn-danger"
+                    >
+                      Delete Requirement
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Date Wise Report</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="body-wrap" id="table-print">
+      <tbody>
+        <tr>
+          <td class="container" width="600">
+            <div class="content">
+              <table class="main" width="100%" cellpadding="0" cellspacing="0">
+                <tbody>
+                  <tr>
+                    <td class="content-wrap aligncenter">
+                      <table width="100%" cellpadding="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td class="content-block">
+                              <table class="invoice">
+                                <tbody>
+                                  <tr>
+                                    <td>
+                                      Date:- {{ date | date: "dd-MM-YYYY" }}
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>
+                                      <table class="table">
+                                        <thead class="thead-light text-center">
+                                          <tr>
+                                            <th>Carpet</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr
+                                            class="text-center"
+                                            *ngFor="let invoice of report"
+                                          >
+                                            <td>{{ invoice.medicineName }}</td>
+                                            <td>{{ invoice.quantity }}</td>
+                                            <td>{{ invoice.price }}</td>
+                                          </tr>
+                                          <tr class="total">
+                                            <td
+                                              colspan="2"
+                                              style="text-align: right"
+                                            >
+                                              <b>Total</b>
+                                            </td>
+                                            <td class="text-center">
+                                              $ {{ total }}
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="content-block">Carpet Inc.</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="footer">
+                <table width="100% ">
+                  <tbody>
+                    <tr>
+                      <td class="aligncenter content-block">
+                        Questions? Email
+                        <a href="mailto: ">support@company.inc</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button "
+      class="btn btn-outline-dark"
+      printSectionId="table-print"
+      [useExistingCss]="true"
+      ngxPrint
+    >
+      Print
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #requirementModel let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Required Carpets</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="body-wrap" id="requirement-print">
+      <tbody>
+        <tr>
+          <td class="container" width="600">
+            <div class="content">
+              <table class="main" width="100%" cellpadding="0" cellspacing="0">
+                <tbody>
+                  <tr>
+                    <td class="content-wrap aligncenter">
+                      <table width="100%" cellpadding="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td class="content-block">
+                              <table class="invoice">
+                                <tbody>
+                                  <tr>
+                                    <td>
+                                      <table class="table">
+                                        <thead class="thead-light text-center">
+                                          <tr>
+                                            <th>Carpet</th>
+                                            <th>Quantity</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr
+                                            class="text-center"
+                                            *ngFor="let invoice of requirement"
+                                          >
+                                            <td>{{ invoice.name }}</td>
+                                            <td>{{ invoice.quantity }}</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="content-block">Carpet Inc.</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="footer">
+                <table width="100% ">
+                  <tbody>
+                    <tr>
+                      <td class="aligncenter content-block">
+                        Questions? Email
+                        <a href="mailto: ">support@company.inc</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button "
+      class="btn btn-outline-dark"
+      printSectionId="requirement-print"
+      [useExistingCss]="true"
+      ngxPrint
+    >
+      Print
+    </button>
+  </div>
+</ng-template>

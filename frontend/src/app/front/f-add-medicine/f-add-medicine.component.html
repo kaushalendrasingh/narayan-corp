@@ -1,0 +1,213 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">{{ medicineTitle }}</h1>
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a routerLink="/sales">Home</a></li>
+          <li class="breadcrumb-item active">{{ medicineTitle }}</li>
+        </ol>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<div class="container-fluid">
+  <form [formGroup]="medicineData" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-sm-6 form-group">
+        <label for="medicineName">Carpet name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="medicineName"
+          required
+          [(ngModel)]="medicine.medicineName"
+          formControlName="medicineName"
+          name="medicineName"
+          aria-describedby="medicineName"
+          placeholder="Enter Carpet Name"
+        />
+        <div
+          *ngIf="f.medicineName.touched && f.medicineName.invalid"
+          class="text-danger"
+          role="alert"
+        >
+          <div *ngIf="f.medicineName.errors">
+            <div *ngIf="f.medicineName.errors.required">
+              Carpet name is required.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 form-group">
+        <label for="medicineCompany">Carpet Company Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="medicineCompany"
+          [(ngModel)]="medicine.medicineCompany"
+          formControlName="medicineCompany"
+          name="medicineCompany"
+          id="agentUsername"
+          aria-describedby="agentUsername"
+          placeholder="Enter Carpet Company Name"
+        />
+        <div
+          *ngIf="f.medicineCompany.touched && f.medicineCompany.invalid"
+          class="text-danger"
+          role="alert"
+        >
+          <div *ngIf="f.medicineCompany.errors">
+            <div *ngIf="f.medicineCompany.errors.required">
+              Carpet Company name is required.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 form-group">
+        <label for="mrp">Maximum Retail Price (MRP) </label>
+        <input
+          type="text"
+          class="form-control"
+          id="mrp"
+          aria-describedby="mrp"
+          [(ngModel)]="medicine.mrp"
+          formControlName="mrp"
+          name="mrp"
+          placeholder="Enter Carpet MRP"
+        />
+        <div
+          *ngIf="f.mrp.touched && f.mrp.invalid"
+          class="text-danger"
+          role="alert"
+        >
+          <div *ngIf="f.mrp.errors">
+            <div *ngIf="f.mrp.errors.required">Carpet MRP is required.</div>
+            <div *ngIf="f.mrp.errors.pattern">Please Enter valid MRP.</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 form-group">
+        <label for="sellingPrice">Selling Price</label>
+        <input
+          type="text"
+          class="form-control"
+          id="sellingPrice"
+          formControlName="sellingPrice"
+          [(ngModel)]="medicine.sellingPrice"
+          name="sellingPrice"
+          aria-describedby="sellingPrice"
+          placeholder="Enter Selling Price"
+        />
+        <div
+          *ngIf="f.sellingPrice.touched && f.sellingPrice.invalid"
+          class="text-danger"
+          role="alert"
+        >
+          <div *ngIf="f.sellingPrice.errors">
+            <div *ngIf="f.sellingPrice.errors.required">
+              Carpet Selling is required.
+            </div>
+            <div *ngIf="f.sellingPrice.errors.pattern">
+              Please Enter valid selling Price.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <label for="type">Type</label>
+        <ng-multiselect-dropdown
+          [placeholder]="'Select carpet type'"
+          [settings]="dropdowntypeSetting"
+          [data]="isTypeList"
+          (onSelect)="isTypeListSelect($event)"
+          id="type"
+          formControlName="type"
+          name="type"
+        >
+        </ng-multiselect-dropdown>
+        <div
+          *ngIf="f.type.touched && f.type.invalid"
+          class="text-danger"
+          role="alert"
+        >
+          <div *ngIf="f.type.errors" class="text-danger" role="alert">
+            <div *ngIf="f.type.errors.required">Payment is required.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 form-group">
+        <label for="manufacturingDate">Carpet count in a Stip </label>
+        <input
+          type="text"
+          class="form-control"
+          id="medicineInStip"
+          [(ngModel)]="medicine.medicineInStip"
+          formControlName="medicineInStip"
+          name="medicineInStip"
+          aria-describedby="medicineInStip"
+          placeholder="Enter Carpet in a Stip"
+        />
+        <div
+          *ngIf="f.medicineInStip.touched && f.medicineInStip.invalid"
+          class="text-danger"
+          role="alert"
+        >
+          <div *ngIf="f.medicineInStip.errors">
+            <div *ngIf="f.medicineInStip.errors.required">
+              Carpet count in a stip is required.
+            </div>
+            <div *ngIf="f.medicineInStip.errors.pattern">
+              Please Enter valid Carpet count in stip.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 form-group">
+        <label for="expiryDate">Total Stip</label>
+        <input
+          type="text"
+          class="form-control"
+          id="totalStip"
+          formControlName="totalStip"
+          [(ngModel)]="medicine.totalStip"
+          name="totalStip"
+          aria-describedby="totalStip"
+          placeholder="Enter Total stips"
+        />
+        <div
+          *ngIf="f.totalStip.touched && f.totalStip.invalid"
+          class="text-danger"
+          role="alert"
+        >
+          <div *ngIf="f.totalStip.errors">
+            <div *ngIf="f.totalStip.errors.required">
+              Carpet total stip count is required.
+            </div>
+            <div *ngIf="f.totalStip.errors.pattern">
+              Please Enter valid Carpet stip count.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button
+        type="submit"
+        [disabled]="!medicineData.valid"
+        class="btn btn-primary"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

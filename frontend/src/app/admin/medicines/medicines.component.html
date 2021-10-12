@@ -1,0 +1,67 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">Carpet Listing</h1>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">
+              <a routerLink="/admin/dashboard">Home</a>
+            </li>
+            <li class="breadcrumb-item active">Carpet Listing</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <div class="container mb-5">
+    <table id="medicineTable" class="table">
+      <thead class="thead-dark text-center">
+        <tr>
+          <th>Carpet name</th>
+          <th>Carpet Price</th>
+          <th>Carpet Stock</th>
+          <th>Total Tablet Stock</th>
+          <th>Carpet Type</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center" *ngFor="let medicine of medicine.data">
+          <td>{{ medicine.medicineName }}</td>
+          <td>{{ medicine.mrp }}</td>
+          <td>{{ medicine.totalStip }}</td>
+          <td>{{ medicine.medicineInStip * medicine.totalStip }}</td>
+          <td>{{ medicine.type }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-warning btn-sm"
+              (click)="editMedicine(medicine._id)"
+            >
+              Edit
+            </button>
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-danger btn-sm"
+              (click)="deleteMedicine(medicine._id)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

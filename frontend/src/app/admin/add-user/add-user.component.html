@@ -1,0 +1,94 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">{{agentTitle}}</h1>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a routerLink="/admin/dashboard">Home</a></li>
+                        <li class="breadcrumb-item active">{{agentTitle}}</li>
+                    </ol>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <div class="container-fluid">
+        <form class="form" [formGroup]="agentData" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-sm-6  form-group">
+                    <label for="AgentName">Agent Name</label>
+                    <input type="text" class="form-control" id="name" formControlName="name" name="name" [(ngModel)]="agent.data.name" placeholder="Enter Agent Name">
+                    <div *ngIf="f.name.touched && f.name.invalid" class="text-danger" role="alert">
+                        <div *ngIf="f.name.errors" class="text-danger" role="alert">
+                            <div *ngIf="f.name.errors.required">Name is required.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6  form-group">
+                    <label for="agentUsername">Agent User Name</label>
+                    <input [readonly]="readOnly" type="text" class="form-control" id="agentUsername" formControlName="username" [(ngModel)]="agent.data.username" name="username" placeholder="Enter Agent User Name">
+                    <div *ngIf="f.username.touched && f.username.invalid" class="text-danger" role="alert">
+                        <div *ngIf="f.username.errors">
+                            <div *ngIf="f.username.errors.required">Username is required.</div>
+                            <div *ngIf="f.username.errors.username">Username already exists!.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6  form-group">
+                    <label for="agentEmailId">Email address</label>
+                    <input [readonly]="readOnly" type="email" class="form-control" formControlName="email" name="email" [(ngModel)]="agent.data.email" id="agentEmailId" placeholder="Enter email">
+                    <small id="agentEmailId" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <div *ngIf="f.email.touched && f.email.invalid" class="text-danger" role="alert">
+                        <div *ngIf="f.email.errors">
+                            <div *ngIf="f.email.errors.required">Email is required.</div>
+                            <div *ngIf="f.email.errors.email">Please, enter valid email address.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6  form-group">
+                    <label for="agentPassword">Password</label>
+                    <input type="password" class="form-control" formControlName="password" name="password" id="password" placeholder="Enter Password">
+                    <div *ngIf="f.password.touched  && f.password.invalid" class="text-danger" role="alert">
+                        <div *ngIf="f.password.errors" class="text-danger" role="alert">
+                            <div *ngIf="f.password.errors.required">Password is required.</div>
+                            <div *ngIf="f.password.errors.pattern">Password should be Minimum 8 and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6  form-group">
+                    <label for="agentRole">Role</label>
+                    <select type="email" class="form-control" formControlName="role" name="role" id="role" [(ngModel)]="agent.data.role" placeholder="Select Role">
+                      <option value = "">Select Role</option>
+                      <option value = "agent" [selected]="agent.data.role == 'agent'">Agent</option>
+                      <option value = "manager" [selected]="agent.data.role == 'manager'">Manager</option>
+                    </select>
+                    <div *ngIf="f.role.touched && f.role.invalid" class="text-danger" role="alert">
+                        <div *ngIf="f.role.errors">
+                            <div *ngIf="f.role.errors.required">Role is required.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6  form-group">
+                    <label for="agentDOB">Date of Birth</label>
+                    <input type="date" class="form-control" formControlName="agentDOB" [(ngModel)]="agent.data.agentDOB" name="agentDOB" id="agentDOB" placeholder="Select Date of Birth">
+                    <div *ngIf="f.agentDOB.touched  && f.agentDOB.invalid" class="text-danger" role="alert">
+                        <div *ngIf="f.agentDOB.errors" class="text-danger" role="alert">
+                            <div *ngIf="f.agentDOB.errors.required">Date of Birth is required.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" [disabled]="!agentData.valid" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

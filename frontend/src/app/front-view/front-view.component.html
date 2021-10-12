@@ -1,0 +1,49 @@
+<div style="background: url('../../assets/background.jpg') center bottom no-repeat" class="fixed-top h-100">
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Agent Sign in</h3>
+                </div>
+                <div *ngIf="errResponse" class="alert alert-danger">{{errResponse}}
+                </div>
+                <div class="card-body">
+                    <form class="form" [formGroup]="UserData" (ngSubmit)="onSubmit()">
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="email" formControlName="email" name="email" class="form-control" placeholder="email">
+                        </div>
+                        <div *ngIf="f.email.touched && f.email.invalid" class="text-danger" role="alert">
+                            <div *ngIf="f.email.errors">
+                                <div *ngIf="f.email.errors.required">Email is required.</div>
+                                <div *ngIf="f.email.errors.email">Please, enter valid email address.</div>
+                            </div>
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" formControlName="password" name="password" class="form-control" placeholder="password">
+                        </div>
+                        <div *ngIf="f.password.touched && f.password.invalid" class="text-danger" role="alert">
+                            <div *ngIf="f.password.errors">
+                                <div *ngIf="f.password.errors.required">Password is required.</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" [disabled]="!UserData.valid" value="Login" class="btn float-right login_btn">
+                            <input type="text" hidden value="agents">
+                        </div>
+                    </form>
+                </div>
+                <!-- <div class="card-footer">
+                    <div class="d-flex justify-content-center links">
+                        <a class="text-white" routerLink="/forget-passowrd">Admin</a>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

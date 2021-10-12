@@ -1,0 +1,34 @@
+<div style="background: url('../../assets/background.jpg') center bottom no-repeat" class="fixed-top h-100">
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <div class="card-header">
+                <h3>Admin Sign in</h3>
+            </div>
+            <!-- Icon -->
+            <!-- Login Form -->
+            <form class="form" [formGroup]="UserData" (ngSubmit)="onSubmit()">
+                <input type="text" id="login" formControlName="email" name="email" class="fadeIn second" placeholder="email">
+                <div *ngIf="f.email.touched && f.email.invalid" class="text-danger" role="alert">
+                    <div *ngIf="f.email.errors">
+                        <div *ngIf="f.email.errors.required">Email is required.</div>
+                        <div *ngIf="f.email.errors.email">Please, enter valid email address.</div>
+                    </div>
+                </div>
+                <input type="password" id="password" class="fadeIn third" formControlName="password" name="password" placeholder="password">
+                <div *ngIf="f.password.touched && f.password.invalid" class="text-danger" role="alert">
+                    <div *ngIf="f.password.errors">
+                        <div *ngIf="f.password.errors.required">Password is required.</div>
+                    </div>
+                </div>
+                <input type="submit" [disabled]="!UserData.valid" class="fadeIn fourth" value="Log In">
+            </form>
+
+            <!-- Remind Passowrd -->
+            <!-- <div id="formFooter">
+                <a class="underlineHover" href="#">Forgot Password?</a>
+            </div> -->
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img
+          src="../../../../assets/adminLogo.png"
+          class="img-circle elevation-2"
+          alt="User Image"
+        />
+      </div>
+      <div class="info">
+        <a
+          routerLink="/admin/dashboard"
+          routerLinkActive="active"
+          class="d-block"
+          >Admin</a
+        >
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul
+        class="nav nav-pills nav-sidebar flex-column"
+        data-widget="treeview"
+        role="menu"
+        data-accordion="false"
+      >
+        <li class="nav-item">
+          <a
+            routerLink="/admin/dashboard"
+            routerLinkActive="active"
+            class="nav-link"
+          >
+            <i class="nav-icon fas fa-th"></i>
+            <p>DashBoard</p>
+          </a>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="javascript:void(0)" class="nav-link">
+            <i class="nav-icon fas fa-user"></i>
+            <p>Agents<i class="right fas fa-angle-left"></i></p>
+          </a>
+          <ul class="nav nav-treeview" style="display: none">
+            <li class="nav-item">
+              <a routerLink="/admin/agents" class="nav-link"
+                ><i class="far fa-circle nav-icon"></i>
+                <p>Agents</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/admin/add-agent" class="nav-link"
+                ><i class="far fa-circle nav-icon"></i>
+                <p>Add Agent</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="javascript:void(0)" class="nav-link">
+            <i class="nav-icon fas fa-prescription-bottle-alt"></i>
+            <p>Carpets<i class="right fas fa-angle-left"></i></p>
+          </a>
+          <ul class="nav nav-treeview" style="display: none">
+            <li class="nav-item">
+              <a routerLink="/admin/medicines" class="nav-link"
+                ><i class="far fa-circle nav-icon"></i>
+                <p>Carpets</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/admin/add-medicine" class="nav-link"
+                ><i class="far fa-circle nav-icon"></i>
+                <p>Add Carpets</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="javascript:void(0)" class="nav-link">
+            <i class="nav-icon fas fa-file-invoice"></i>
+            <p>Bills<i class="right fas fa-angle-left"></i></p>
+          </a>
+          <ul class="nav nav-treeview" style="display: none">
+            <li class="nav-item">
+              <a routerLink="/admin/invoices" class="nav-link"
+                ><i class="far fa-circle nav-icon"></i>
+                <p>Manage Bills</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="javascript:void(0)" class="nav-link">
+            <i class="nav-icon fas fa-filter"></i>
+            <p>Options<i class="right fas fa-angle-left"></i></p>
+          </a>
+          <ul class="nav nav-treeview" style="display: none">
+            <li class="nav-item">
+              <a routerLink="/admin/options" class="nav-link"
+                ><i class="far fa-circle nav-icon"></i>
+                <p>Manage Options</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a (click)="logout()" style="cursor: pointer" class="nav-link">
+            <i class="nav-icon fas fa-sign-out-alt"></i>
+            <p>Logout</p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
