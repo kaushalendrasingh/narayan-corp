@@ -20,7 +20,7 @@ module.exports = class User {
     const date = new Date();
     return await db
       .collection("carpet_details")
-      .find({ expiryDate: { $gt: date }, totalStip: { $gte: 1 } })
+      .find({totalStip: { $gte: 1 } })
       .toArray();
   }
   static async getMedicineByName(medicineName, db) {

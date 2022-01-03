@@ -77,10 +77,6 @@ exports.getMedicinesById = async (req, res, next) => {
     }
     const id = req.params.id;
     const medicine = await userModel.getMedicineById(req.db, id);
-    medicine.expiryDate = moment(medicine.expiryDate).format("YYYY-MM-DD");
-    medicine.manufacturingDate = moment(medicine.manufacturingDate).format(
-      "YYYY-MM-DD"
-    );
     if (medicine) {
       res.status(200).json({
         data: medicine,
