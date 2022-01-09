@@ -105,7 +105,7 @@ export class FAddMedicineComponent implements OnInit {
       this.medicineValues = this.medicineData.value;
       const stock = this.stock + parseInt(this.medicineData.value.totalStip);
       this.medicineValues._id = this.id;
-      this.medicineValues.totalStip = stock;
+      this.medicineValues.totalStip = this.typeItem.value === 'meter' ? 1 : stock;
       this.medicineValues.type = this.typeItem.value;
       this.frontService.updateMedicine(this.medicineValues).subscribe(
         (data) => {

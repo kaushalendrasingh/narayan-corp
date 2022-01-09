@@ -105,9 +105,11 @@ export class SalesComponent implements OnInit {
         this.buttondisable = false;
         const quan = parseInt(quantity);
         this.totalmed = data.medicineInStip * data.totalStip;
+        console.log(data);
+
         if (data.type === 'meter') {
-          if (quan < data.medicineInStip) {
-            alert(`Please try to add below ${this.totalmed} `);
+          if (quan > data.medicineInStip) {
+            alert(`Please try to add below ${data.medicineInStip} `);
             return false;
           }
         } else {
