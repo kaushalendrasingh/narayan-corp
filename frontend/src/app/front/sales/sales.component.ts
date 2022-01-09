@@ -98,18 +98,30 @@ export class SalesComponent implements OnInit {
   }
 
   onClick(quantity: string) {
+    let price = 0;
     this.frontService.getMedicinesById(this.selectedItem.id).subscribe(
       (res: any) => {
         const { data } = res;
         this.buttondisable = false;
         const quan = parseInt(quantity);
         this.totalmed = data.medicineInStip * data.totalStip;
-        if (quan > this.totalmed) {
-          alert(`Please try to add below ${this.totalmed} `);
-          return false;
+        if (data.type === 'meter') {
+          if (quan < data.medicineInStip) {
+            alert(`Please try to add below ${this.totalmed} `);
+            return false;
+          }
+        } else {
+          if (quan > this.totalmed) {
+            alert(`Please try to add below ${this.totalmed} `);
+            return false;
+          }
         }
-        const price = (data.sellingPrice / data.medicineInStip) * quan;
-        const mrpPrice = (data.mrp / data.medicineInStip) * quan;
+        if (data.type === 'stip') {
+          price = data.sellingPrice * quan;
+        } else {
+          price = data.sellingPrice * quan;
+        }
+        const mrpPrice = data.mrp  * quan;
         const totalDiscount = mrpPrice - price;
         const disTotal = totalDiscount.toFixed(2);
         this.total += price;

@@ -150,7 +150,7 @@
         </div>
 
         <div class="col-sm-6 form-group">
-          <label for="manufacturingDate">Carpet count in a Stip </label>
+          <label for="manufacturingDate">Total Carpet count in a Bundle or Meter </label>
           <input
             type="text"
             class="form-control"
@@ -168,16 +168,16 @@
           >
             <div *ngIf="f.medicineInStip.errors">
               <div *ngIf="f.medicineInStip.errors.required">
-                Carpet count in a stip is required.
+                Carpet count in a bundle is required.
               </div>
               <div *ngIf="f.medicineInStip.errors.pattern">
-                Please Enter valid Carpet count in stip.
+                Please Enter valid Carpet count in bundle.
               </div>
             </div>
           </div>
         </div>
         <div class="col-sm-6 form-group">
-          <label for="expiryDate">Total Stip</label>
+          <label for="expiryDate">Total Carpet Bundle Count</label>
           <input
             type="text"
             class="form-control"
@@ -195,10 +195,10 @@
           >
             <div *ngIf="f.totalStip.errors">
               <div *ngIf="f.totalStip.errors.required">
-                Carpet total stip count is required.
+                Carpet total bundle count is required.
               </div>
               <div *ngIf="f.totalStip.errors.pattern">
-                Please Enter valid Carpet stip count.
+                Please Enter valid Carpet bundle count.
               </div>
             </div>
           </div>
