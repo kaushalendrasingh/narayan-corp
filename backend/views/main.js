@@ -190,8 +190,8 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     { path: '', component: _front_view_front_view_component__WEBPACK_IMPORTED_MODULE_2__.FrontViewComponent },
     { path: 'admin', component: _admin_admin_login_admin_login_component__WEBPACK_IMPORTED_MODULE_0__.AdminLoginComponent },
-    { path: '', loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_ng-bootstrap_ng-bootstrap___ivy_ngcc___fesm2015_ng-bootstrap_js-node_mod-24e148"), __webpack_require__.e("src_app_front_front_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./front/front.module */ 4643)).then(m => m.FrontModule) },
-    { path: 'admin', loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_ng-bootstrap_ng-bootstrap___ivy_ngcc___fesm2015_ng-bootstrap_js-node_mod-24e148"), __webpack_require__.e("src_app_admin_admin_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./admin/admin.module */ 7095)).then(m => m.AdminModule) },
+    { path: '', loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_ng-bootstrap_ng-bootstrap___ivy_ngcc___fesm2015_ng-bootstrap_js-node_mod-d05e02"), __webpack_require__.e("src_app_front_front_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./front/front.module */ 4643)).then(m => m.FrontModule) },
+    { path: 'admin', loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_ng-bootstrap_ng-bootstrap___ivy_ngcc___fesm2015_ng-bootstrap_js-node_mod-d05e02"), __webpack_require__.e("src_app_admin_admin_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./admin/admin.module */ 7095)).then(m => m.AdminModule) },
     { path: '**', component: _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_1__.PageNotFoundComponent }
 ];
 class AppRoutingModule {
@@ -379,7 +379,8 @@ __webpack_require__.r(__webpack_exports__);
 class AuthService {
     constructor(http) {
         this.http = http;
-        this.APIURL = "https://enigmatic-hamlet-45263.herokuapp.com/api/";
+        this.APIURL = 'http://localhost:3030/api/';
+        this.APISERVER = 'https://enigmatic-hamlet-45263.herokuapp.com/api/';
         this.authToken = 'authToken';
         this.adminAuthToken = 'adminAuthToken';
     }
@@ -388,7 +389,7 @@ class AuthService {
             if (data.status) {
                 if (data.role == 'admin') {
                     this.setLocalStorage(this.adminAuthToken, data.token);
-                    this.setLocalStorage("_id", data._id);
+                    this.setLocalStorage('_id', data._id);
                 }
                 else {
                     this.setLocalStorage(this.authToken, data.token);
